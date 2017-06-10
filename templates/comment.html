@@ -1,0 +1,38 @@
+<!-- Provides the form for the user to create a new comment in the blog.
+Displays subject and content of the post on which the comment is being made
+and a box for the comment. If there is an error, it uses jinja to bring back
+and display the subject, content, comment and error message. Also provides a
+link to cancel if the user changes their mind about entering a comment. This
+page is used in the MakeComment handler. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Make a Comment</h2>
+
+    <form method="post">
+      <label>
+        <div>subject</div>
+        <input type="text" name="subject" value="{{subject}}">
+      </label>
+
+      <label>
+        <div>blog</div>
+        <textarea rows="2" cols="12" name="content">{{content}}</textarea>
+      </label>
+
+      <label>
+        <div>Comment</div>
+        <textarea rows="2" cols="12" name="comment">{{comment}}</textarea>
+      </label>
+
+      <div class="cancel-id">
+        <a class="cancel-link" href="/blog">cancel to return to the blog</a>
+      </div>
+
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+    </form>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!-- Provides a form for logging in. Using Jinja to display the invalid
+username and error message if the name or password isn't correct. This page
+is used by the Login handler. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Login</h2>
+    <form method="post">
+      <table>
+        <tr>
+          <td class="label">
+            Username
+          </td>
+          <td>
+            <input type="text" name="username" value="{{username}}">
+          </td>
+        </tr>
+
+        <tr>
+          <td class="label">
+            Password
+          </td>
+          <td>
+            <input type="password" name="password" value="">
+          </td>
+        </tr>
+      </table>
+
+      <div class="error">
+        {{error}}
+      </div>
+
+      <input type="submit">
+    </form>
+
+{% endblock %}

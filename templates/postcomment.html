@@ -1,0 +1,30 @@
+<!-- Defines how the comment will appear on the blog page. Like an html page
+overlayed inside another html page. Each comment object is sent to this page
+from the render function in the Comment class. The key ID of the comment is
+captured here and sent to other handlers via the a-tag for doing things with
+that specific comment. -->
+
+
+<div class="comment">
+  <div class="comment-heading">
+    <div class="comment-title">
+      comment by: {{c.creator}}
+    </div>
+
+    <div class="comment-id">
+        <a class="login-link" href="/blog/editcomment?comment_id={{c.key().id()|string}}">edit</a>
+        |
+        <a class="login-link" href="/blog/deletecomment?comment_id={{c.key().id()|string}}">delete</a>
+    </div>
+
+    <div class="comment-date">
+      {{c.created.strftime("%b %d, %Y")}}
+    </div>
+  </div>
+
+  <div>
+    <div class="comment-comment">
+      {{c._render_text | safe}}
+    </div>
+  </div>
+</div>

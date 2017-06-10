@@ -1,0 +1,30 @@
+<!-- Provides a form for deleting posts. Using Jinja to display the post about
+to be deleted. Has a delete button and a link to cancel if the user decides
+not to delete it. This page is used by the DeletePost handler. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Delete Your Post</h2>
+
+    <form method="post">
+      <label>
+        <div>subject</div>
+        <input type="text" name="subject" value="{{subject}}">
+      </label>
+
+      <label>
+        <div>blog</div>
+        <textarea rows="2" cols="12" name="content">{{content}}</textarea>
+      </label>
+
+      <div class="cancel-id">
+        <a class="cancel-link" href="/blog">cancel to return to the blog</a>
+      </div>
+
+      <div class="error">{{error}}</div>
+
+      <input type="submit" value="DELETE">
+    </form>
+{% endblock %}

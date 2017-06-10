@@ -1,0 +1,36 @@
+<!-- Defines how the post will appear on the blog page. Like an html page
+overlayed inside another html page. Each post object is sent to this page
+from the render function in the Post class. The key ID of the post is captured
+here and sent to other handlers via the a-tag for doing things with that
+specific post. -->
+
+
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      {{p.subject}}
+    </div>
+
+    <div class="post-date">
+      {{p.created.strftime("%b %d, %Y")}}
+    </div>
+  </div>
+
+  <div>
+    <div class="post-content">
+      {{p._render_text | safe}}
+    </div>
+
+    <div class="post-id">
+        <a class="login-link" href="/blog/editpost?post_id={{p.key().id()|string}}">edit</a>
+        |
+        <a class="login-link" href="/blog/deletepost?post_id={{p.key().id()|string}}">delete</a>
+        |
+        <a class="login-link" href="/blog/comment?post_id={{p.key().id()|string}}">comment</a>
+        |
+        <a class="login-link" href="/blog/like?post_id={{p.key().id()|string}}">like</a>
+    </div>
+    <br><br>
+    <div class="post-id">likes = {{p.likes_qty}}</div>
+  </div>
+</div>

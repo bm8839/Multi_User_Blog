@@ -1,0 +1,26 @@
+<!-- Uses jinja loops to process each blog post and each corresponding comment
+for that post. All post objects (records) from the Post kind(table) and all
+comment records from the Comment table are sent to this page from the
+EntireBlog handler. Then the render function from the Post class or Comment
+class is called on each post object and each comment object. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% for p in posts %}
+    {{ p.render() | safe }}
+    <br><br>
+
+
+      {% for c in comments %}
+        {% if p.key().id()==c.post_id | int %}
+        {{ c.render() | safe }}
+        <br><br>
+        {% endif %}
+      {% endfor %}
+    <br><br>
+  {% endfor %}
+
+{% endblock %}

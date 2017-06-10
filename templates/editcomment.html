@@ -1,0 +1,25 @@
+<!-- Provides a form for editing comments. Using Jinja to display the comment
+about to be edited. Has a submit button and a link to cancel if the user
+decides not to edit it. This page is used by the EditComment handler. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Your Comment</h2>
+
+    <form method="post">
+      <label>
+        <div>Comment</div>
+        <textarea rows="2" cols="12" name="comment">{{comment}}</textarea>
+      </label>
+
+      <div class="cancel-id">
+        <a class="cancel-link" href="/blog">cancel to return to the blog</a>
+      </div>
+
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+    </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+<!-- Displays welcome message to the user upon successful login. This page is
+used in the Welcome handler. -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Welcome, {{username}}!</h2>
+    <dir><a href="/blog">Click Billy's Blog to read the blog</a></dir>
+
+{% endblock %}

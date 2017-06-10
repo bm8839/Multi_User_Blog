@@ -1,0 +1,12 @@
+<!-- This page displays only one post and is used by the ViewNewPost handler.
+It is also used by the LikePost handler for displaying error message. Only one
+Post object (record) is sent to this page for display.  -->
+
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render() | safe}}
+
+  <div class="error">{{error}}</div>
+
+{% endblock %}

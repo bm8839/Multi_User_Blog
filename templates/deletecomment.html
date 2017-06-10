@@ -1,0 +1,25 @@
+<!-- Provides a form for deleting comments. Using Jinja to display the comment
+about to be deleted. Has a delete button and a link to cancel if the user
+decides not to delete it. This page is used by the DeleteComment handler. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Delete Your Comment</h2>
+
+    <form method="post">
+      <label>
+        <div>Comment</div>
+        <textarea rows="2" cols="12" name="comment">{{comment}}</textarea>
+      </label>
+
+      <div class="cancel-id">
+        <a class="cancel-link" href="/blog">cancel to return to the blog</a>
+      </div>
+
+      <div class="error">{{error}}</div>
+
+      <input type="submit" value="DELETE">
+    </form>
+{% endblock %}

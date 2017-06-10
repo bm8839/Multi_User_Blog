@@ -1,0 +1,30 @@
+<!-- Provides a form for editing posts. Using Jinja to display the post about
+to be edited. Has a submit button and a link to cancel if the user decides
+not to edit it. This page is used by the EditPost handler. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Your Post</h2>
+
+    <form method="post">
+      <label>
+        <div>subject</div>
+        <input type="text" name="subject" value="{{subject}}">
+      </label>
+
+      <label>
+        <div>blog</div>
+        <textarea rows="2" cols="12" name="content">{{content}}</textarea>
+      </label>
+      <br>
+      <div class="cancel-id">
+        <a class="cancel-link" href="/blog">cancel to return to the blog</a>
+      </div>
+      <br>
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+    </form>
+{% endblock %}
