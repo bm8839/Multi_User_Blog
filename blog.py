@@ -382,6 +382,10 @@ class EditPost(BlogHandler):
             post_id = int(post_id)
             post = Post.by_id(post_id)
 
+            if not post:
+                self.error(404)
+                return
+
             if self.user.name == post.creator:
                 self.render("editpost.html",
                             subject=post.subject,
@@ -405,6 +409,11 @@ class EditPost(BlogHandler):
             post_id = self.request.get('post_id')
             post_id = int(post_id)
             post = Post.by_id(post_id)
+
+            if not post:
+                self.error(404)
+                return
+
             subject = self.request.get('subject')
             content = self.request.get('content')
 
@@ -442,6 +451,10 @@ class DeletePost(BlogHandler):
             post_id = int(post_id)
             post = Post.by_id(post_id)
 
+            if not post:
+                self.error(404)
+                return
+
             if self.user.name == post.creator:
                 self.render("deletepost.html",
                             subject=post.subject,
@@ -462,6 +475,10 @@ class DeletePost(BlogHandler):
             post_id = self.request.get('post_id')
             post_id = int(post_id)
             post = Post.by_id(post_id)
+
+            if not post:
+                self.error(404)
+                return
 
             if self.user.name == post.creator:
                 post.delete()
@@ -487,6 +504,10 @@ class LikePost(BlogHandler):
             post_id = self.request.get('post_id')
             post_id = int(post_id)
             post = Post.by_id(post_id)
+
+            if not post:
+                self.error(404)
+                return
 
             if ((self.user.name != post.creator) and
                (self.user.name not in post.users_liked)):
@@ -590,6 +611,11 @@ class MakeComment(BlogHandler):
             post_id = self.request.get('post_id')
             post_id = int(post_id)
             post = Post.by_id(post_id)
+
+            if not post:
+                self.error(404)
+                return
+
             self.render("comment.html",
                         subject=post.subject,
                         content=post.content)
@@ -639,6 +665,10 @@ class EditComment(BlogHandler):
             comment_id = int(comment_id)
             c = Comment.by_id(comment_id)
 
+            if not c:
+                self.error(404)
+                return
+
             if self.user.name == c.creator:
                 self.render("editcomment.html", comment=c.comment)
             else:
@@ -660,6 +690,10 @@ class EditComment(BlogHandler):
             comment_id = int(comment_id)
             c = Comment.by_id(comment_id)
             newcomment = self.request.get('comment')
+
+            if not c:
+                self.error(404)
+                return
 
             if self.user.name == c.creator:
                 if newcomment:
@@ -693,6 +727,10 @@ class DeleteComment(BlogHandler):
             comment_id = int(comment_id)
             c = Comment.by_id(comment_id)
 
+            if not c:
+                self.error(404)
+                return
+
             if self.user.name == c.creator:
                 self.render("deletecomment.html", comment=c.comment)
             else:
@@ -713,6 +751,10 @@ class DeleteComment(BlogHandler):
             comment_id = int(comment_id)
             c = Comment.by_id(comment_id)
 
+            if not c:
+                self.error(404)
+                return
+
             if self.user.name == c.creator:
                 c.delete()
                 self.redirect('/blog')
@@ -721,7 +763,8 @@ class DeleteComment(BlogHandler):
             self.redirect("/blog/login")
 
 
-app = webapp2.WSGIApplication([('/blog', EntireBlog),
+app = webapp2.WSGIApplication([('/', EntireBlog),
+                               ('/blog', EntireBlog),
                                ('/blog/login', Login),
                                ('/blog/welcome', Welcome),
                                ('/blog/signup', Signup),
