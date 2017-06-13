@@ -5,6 +5,7 @@
 ### Installation
 
   * Install [Python 2](https://www.python.org/downloads/)
+  * Install [Jinja2](http://jinja.pocoo.org/)
   * Install [Google App Engine](https://cloud.google.com/appengine/docs/standard/python/tools/using-local-server)
   * Install [Git Bash](https://openhatch.org/missions/windows-setup/install-git-bash)
   * Open Git Bash and enter the following command
