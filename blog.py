@@ -207,16 +207,16 @@ class Login(BlogHandler):
 
 
 # Functions to ensure username, password, and email conform to these rules.
-USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 def valid_username(username):
+    USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
     return username and USER_RE.match(username)
 
-PASS_RE = re.compile(r"^.{3,20}$")
 def valid_password(password):
+    PASS_RE = re.compile(r"^.{3,20}$")
     return password and PASS_RE.match(password)
 
-EMAIL_RE = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
 def valid_email(email):
+    EMAIL_RE = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
     return not email or EMAIL_RE.match(email)
 
 
@@ -327,7 +327,7 @@ class EnterNewPost(BlogHandler):
         substituted into the url and sent to the ViewNewPost handler.
         """
         if not self.user:
-            self.redirect('/blog')
+            return self.redirect('/blog/login')
 
         subject = self.request.get('subject')
         content = self.request.get('content')
@@ -483,7 +483,7 @@ class DeletePost(BlogHandler):
             if self.user.name == post.creator:
                 post.delete()
 
-        self.redirect('/blog')
+        self.redirect('/blog/login')
 
 
 class LikePost(BlogHandler):
